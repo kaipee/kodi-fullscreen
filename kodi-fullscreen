@@ -1,3 +1,9 @@
+#!/bin/bash
+
+# Author:	Keith Patton 2014
+# Brief:	A BASH script to launch KODI onto a specific
+# 		monitor when using a dual monitor setup
+
 # Start XBMC without blocking this script
 __GL_SYNC_TO_VBLANK=1 __GL_SYNC_DISPLAY_DEVICE=CRT-1 &
 kodi &
