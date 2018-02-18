@@ -1,0 +1,19 @@
+# Start XBMC without blocking this script
+__GL_SYNC_TO_VBLANK=1 __GL_SYNC_DISPLAY_DEVICE=CRT-1 &
+kodi &
+
+# Wait for the KODI window to appear
+status=0
+while [ $status -eq 0 ]
+do
+	sleep 1
+	status=`wmctrl -x -l | grep "Kodi" | wc -l | gawk '{print $1}'`
+done
+
+# Fill primary monitor
+# wmctrl [resize] window with title [XBMC Media Center.XBMC Media Center] [and move] [zindex,x,y,w,h]
+#wmctrl -a -x -r XBMC Media Center.XBMC Media Center -e 0,1600,00,1600,900 -b toggle,fullscreen
+# Force XBMC window to fullscreen
+#wmctrl -x -r XBMC Media Center.XBMC Media Center -b toggle,fullscreen
+
+wmctrl -r 'Kodi' -b toggle,fullscreen && wmctrl -r 'Kodi' -e '0,1600,0,1600,900'
